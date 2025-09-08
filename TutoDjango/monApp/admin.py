@@ -1,5 +1,24 @@
 from django.contrib import admin
-from .models import Produit
+from .models import *
 
-# Register your models here.
-admin.site.register(Produit)
+class ProduitAdmin(admin.ModelAdmin):
+    model = Produit
+    list_display = ["refProd", "intituleProd", "prixUnitaireProd", "dateFabProd", "categorie", "status"]
+    list_editable = ["intituleProd", "prixUnitaireProd", "dateFabProd"]
+    radio_fields = {"status": admin.VERTICAL}
+    search_fields = ('intituleProd', 'dateFabProd')
+    list_filter = ('status', 'dateFabProd')
+
+class ProduitInline(admin.TabularInline):
+    model = Produit
+    extra = 1 # nombre de lignes vides par défaut
+
+class CategorieAdmin(admin.ModelAdmin):
+    model = Categorie
+    inlines = [ProduitInline]
+
+admin.site.register(Produit, ProduitAdmin)
+admin.site.register(Categorie, CategorieAdmin)
+admin.site.register(Statut)
+admin.site.register(Rayon)
+admin.site.register(Contenir)

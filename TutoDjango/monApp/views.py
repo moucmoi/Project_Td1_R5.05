@@ -10,30 +10,26 @@ def home(request,param=None):
         return HttpResponse("<h1>Bonjour "+param+"</h1>")
 
 def contact(request):
-    return HttpResponse("<h1>Nous contater</h1><p>07 69 01 88 61</p>") 
+    return render(request, 'monApp/contact.html')
 
 def about(request):
-    return HttpResponse("<h1>A propos de nous</h1><p>Je suis Noa</p>")
+    return render(request, 'monApp/about.html')
 
-
-
-def produits(request):
-    html="<ul>"
-    for objet in Produit.objects.all():
-        html+=f"<li>{objet}</li>"
-    html+="</ul>"
-    return HttpResponse(html)
-
-def categories(request):
-    html="<ul>"
-    for objet in Categorie.objects.all():
-        html+=f"<li>{objet}</li>"
-    html+="</ul>"
-    return HttpResponse(html)
 
 def status(request):
-    html="<ul>"
-    for objet in Statut.objects.all():
-        html+=f"<li>{objet}</li>"
-    html+="</ul>"
-    return HttpResponse(html)
+    stats = Statut.objects.all()
+    return render(request, 'monApp/list_produits.html',{'stats': stats})
+
+def rayon(request):
+    rys = Rayon.objects.all()
+    return render(request, 'monApp/list_produits.html',{'rys': rys})
+
+def produits(request):
+    prdts = Produit.objects.all()
+    return render(request, 'monApp/list_produits.html',{'prdts': prdts})
+
+def categories(request):
+    cats = Categorie.objects.all()
+    return render(request, 'monApp/list_categories.html',{'cats': cats})
+
+

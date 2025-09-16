@@ -18,11 +18,11 @@ def about(request):
 
 def status(request):
     stats = Statut.objects.all()
-    return render(request, 'monApp/list_produits.html',{'stats': stats})
+    return render(request, 'monApp/list_statuts.html',{'stats': stats})
 
 def rayon(request):
     rys = Rayon.objects.all()
-    return render(request, 'monApp/list_produits.html',{'rys': rys})
+    return render(request, 'monApp/list_rayons.html',{'rys': rys})
 
 def produits(request):
     prdts = Produit.objects.all()

@@ -11,7 +11,7 @@
     <tbody>
         {% for ry in rys %}
         <tr>
-            <td>{{ ry.idRayon }} </td>
+            <td><a href="{% url 'dtl_ry' ry.idRayon %}">{{ ry.idRayon }}</a></td>
             <td>{{ ry.nomRayon }} </td>
         </tr>
         {% endfor %}

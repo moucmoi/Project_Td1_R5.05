@@ -71,7 +71,7 @@ class RayonListView(ListView):
         return context
 
 class RayonDetailView(DetailView):
-    model = Produit
+    model = Rayon
     template_name = "monApp/detail_rayon.html"
     context_object_name = "ry"
 
@@ -83,7 +83,7 @@ class RayonDetailView(DetailView):
 
 
 class CategorieListView(ListView):
-    model = Rayon
+    model = Categorie
     template_name = "monApp/list_categories.html"
     context_object_name = "cats"
 
@@ -93,7 +93,7 @@ class CategorieListView(ListView):
         return context
 
 class CategorieDetailView(DetailView):
-    model = Produit
+    model = Categorie
     template_name = "monApp/detail_categories.html"
     context_object_name = "cat"
 
@@ -104,7 +104,7 @@ class CategorieDetailView(DetailView):
     
 
 class StatusListView(ListView):
-    model = Rayon
+    model = Statut
     template_name = "monApp/list_statuts.html"
     context_object_name = "stats"
 
@@ -114,7 +114,7 @@ class StatusListView(ListView):
         return context
 
 class StatusDetailView(DetailView):
-    model = Produit
+    model = Statut
     template_name = "monApp/detail_statut.html"
     context_object_name = "stat"
 

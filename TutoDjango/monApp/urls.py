@@ -4,12 +4,12 @@ from django.views.generic import *
 
 urlpatterns = [
 
-    path("home/", views.HomeView.as_view()),
-    path("home/<param>/", views.HomeView.as_view(), name="home"),
+    path("home/", views.HomeView.as_view(), name="home"),
+    path("home/<param>/", views.HomeView.as_view()),
 
     path("about/", views.AboutView.as_view()),
 
-    path("contact/", views.ContactView.as_view()),
+    path("contact/", views.ContactView),
 
     path("produits/",views.ProduitListView.as_view(),name="lst_prdts"),
     path("produit/<pk>/" ,views.ProduitDetailView.as_view(), name="dtl_prdt"),
@@ -22,4 +22,8 @@ urlpatterns = [
 
     path("rayons/",views.RayonListView.as_view(),name="lst_rys"),
     path("rayon/<pk>/" ,views.RayonDetailView.as_view(), name="dtl_ry"),
+
+    path('login/', views.ConnectView.as_view(), name='login'),
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('logout/', views.DisconnectView.as_view(), name='logout'),
 ]

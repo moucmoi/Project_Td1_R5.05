@@ -26,4 +26,6 @@ urlpatterns = [
     path('login/', views.ConnectView.as_view(), name='login'),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('logout/', views.DisconnectView.as_view(), name='logout'),
+
+    path('email-sent/',views.mailSend.as_view(),name="email-sent")
 ]

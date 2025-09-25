@@ -21,9 +21,11 @@
             <td>{{ prdt.dateFabProd }} </td>
             <td>{{ prdt.categorie }} </td>
             <td>{{ prdt.status }} </td>
+            <td><a href="{% url 'prdt-chng' prdt.RefProd %}">Modifier</a></td>
         </tr>
         {% endfor %}
     </tbody>
+    <a href="{% url 'crt-prdt' %}">Créer un nouveau produit</a>
 </table>
 <p>
     J'ai

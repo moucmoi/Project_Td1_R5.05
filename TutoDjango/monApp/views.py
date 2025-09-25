@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from .forms import *
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+from django.forms import BaseModelForm
 
 
 class HomeView(TemplateView):
@@ -56,6 +57,24 @@ class mailSend(ListView):
 
     def post(self, request, **kwargs):
         return render(request, self.template_name)
+    
+class ProduitUpdateView(UpdateView):
+    model = Produit
+    form_class=ProduitForm
+    template_name = "monApp/update_produit.html"
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        prdt = form.save()
+        return redirect('dtl-prdt', prdt.refProd)
+    
+class ProduitCreateView(CreateView):
+    model = Produit
+    form_class=ProduitForm
+    template_name = "monApp/create_produit.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        prdt = form.save()
+        return redirect('dtl-prdt', prdt.refProd)
 
 class ProduitListView(ListView):
     model = Produit

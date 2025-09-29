@@ -9,6 +9,7 @@ from .forms import *
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.forms import BaseModelForm
+from django.urls import reverse_lazy
 
 
 class HomeView(TemplateView):
@@ -52,11 +53,14 @@ def ContactView(request):
     return render(request, "monApp/page_home.html",{'titreh1':titreh1, 'form':form})
     
 
-class mailSend(ListView):
+def mailSend(request):
     template_name="monApp/email-send.html"
-
-    def post(self, request, **kwargs):
-        return render(request, self.template_name)
+    return render(request,template_name)
+    
+class ProductDeleteView(DeleteView):
+    model = Produit
+    template_name = "monApp/delete_produit.html"
+    success_url = reverse_lazy('lst_prdts')
     
 class ProduitUpdateView(UpdateView):
     model = Produit
@@ -65,7 +69,7 @@ class ProduitUpdateView(UpdateView):
     
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         prdt = form.save()
-        return redirect('dtl-prdt', prdt.refProd)
+        return redirect('dtl_prdt', prdt.refProd)
     
 class ProduitCreateView(CreateView):
     model = Produit
@@ -74,7 +78,7 @@ class ProduitCreateView(CreateView):
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         prdt = form.save()
-        return redirect('dtl-prdt', prdt.refProd)
+        return redirect('dtl_prdt', prdt.refProd)
 
 class ProduitListView(ListView):
     model = Produit
@@ -118,6 +122,29 @@ class RayonDetailView(DetailView):
         context['titremenu'] = "Détail du rayon"
         return context
     
+class RayonUpdateView(UpdateView):
+    model = Rayon
+    form_class=RayonForm
+    template_name = "monApp/update_rayon.html"
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        ry = form.save()
+        return redirect('dtl_ry', ry.idRayon)
+    
+class RayonCreateView(CreateView):
+    model = Rayon
+    form_class=RayonForm
+    template_name = "monApp/create_rayon.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        ry = form.save()
+        return redirect('dtl_ry', ry.idRayon)
+    
+class RayonDeleteView(DeleteView):
+    model = Rayon
+    template_name = "monApp/delete_rayon.html"
+    success_url = reverse_lazy('lst_rys')
+    
 
 
 class CategorieListView(ListView):
@@ -139,6 +166,29 @@ class CategorieDetailView(DetailView):
         context = super(CategorieDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail de la catégorie"
         return context
+    
+class CategorieUpdateView(UpdateView):
+    model = Categorie
+    form_class=CategorieForm
+    template_name = "monApp/update_categorie.html"
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        cat = form.save()
+        return redirect('dtl_cat', cat.idCat)
+    
+class CategorieCreateView(CreateView):
+    model = Categorie
+    form_class=CategorieForm
+    template_name = "monApp/create_categorie.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        cat = form.save()
+        return redirect('dtl_cat', cat.idCat)
+    
+class CategorieDeleteView(DeleteView):
+    model = Categorie
+    template_name = "monApp/delete_categorie.html"
+    success_url = reverse_lazy('lst_cats')
     
 
 class StatusListView(ListView):

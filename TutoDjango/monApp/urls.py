@@ -25,15 +25,15 @@ urlpatterns = [
 
     path("status/",views.StatusListView.as_view(),name="lst_stats"),
     path("statut/<pk>/" ,views.StatusDetailView.as_view(), name="dtl_stat"),
-    path("produit/<pk>/update/",views.ProduitUpdateView.as_view(), name="prdt-chng"),
-    path("produit/",views.ProduitCreateView.as_view(), name="crt-prdt"),
-    path("produit/<pk>/delete/",views.ProductDeleteView.as_view(), name="dlt-prdt"),
+    path("statut/<pk>/update/",views.StatusUpdateView.as_view(), name="stat-chng"),
+    path("statut/",views.StatusCreateView.as_view(), name="crt-stat"),
+    path("statut/<pk>/delete/",views.StatusDeleteView.as_view(), name="dlt-stat"),
 
     path("rayons/",views.RayonListView.as_view(),name="lst_rys"),
     path("rayon/<pk>/" ,views.RayonDetailView.as_view(), name="dtl_ry"),
-    path("produit/<pk>/update/",views.RayonUpdateView.as_view(), name="ry-chng"),
-    path("produit/",views.RayonCreateView.as_view(), name="crt-ry"),
-    path("produit/<pk>/delete/",views.RayonDeleteView.as_view(), name="dlt-ry"),
+    path("rayon/<pk>/update/",views.RayonUpdateView.as_view(), name="ry-chng"),
+    path("rayon/",views.RayonCreateView.as_view(), name="crt-ry"),
+    path("rayon/<pk>/delete/",views.RayonDeleteView.as_view(), name="dlt-ry"),
 
     path('login/', views.ConnectView.as_view(), name='login'),
     path('register/', views.RegisterView.as_view(), name='register'),

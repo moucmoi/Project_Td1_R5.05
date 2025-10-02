@@ -191,6 +191,9 @@ class CategorieDeleteView(DeleteView):
     success_url = reverse_lazy('lst_cats')
     
 
+
+
+
 class StatusListView(ListView):
     model = Statut
     template_name = "monApp/list_statuts.html"
@@ -210,6 +213,32 @@ class StatusDetailView(DetailView):
         context = super(StatusDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail du statut"
         return context
+    
+
+
+    
+class StatusUpdateView(UpdateView):
+    model = Statut
+    form_class=StatutForm
+    template_name = "monApp/update_status.html"
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        stat = form.save()
+        return redirect('dtl_stat', stat.idStatut)
+    
+class StatusCreateView(CreateView):
+    model = Statut
+    form_class=StatutForm
+    template_name = "monApp/create_status.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        stat = form.save()
+        return redirect('dtl_stat', stat.idStatut)
+    
+class StatusDeleteView(DeleteView):
+    model = Statut
+    template_name = "monApp/delete_status.html"
+    success_url = reverse_lazy('lst_stats')
     
 
 

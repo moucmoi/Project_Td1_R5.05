@@ -13,8 +13,11 @@
         <tr>
             <td><a href="{% url 'dtl_stat' stat.idStatut %}">{{ stat.idStatut }}</a></td>
             <td>{{ stat.libelleStatut }} </td>
+            <td><a href="{% url 'stat-chng' stat.idStatut %}">Modifier</a></td>
+            <td><a href="{% url 'dlt-stat' stat.idStatut %}">Supprimer</a></td>
         </tr>
         {% endfor %}
+        <a href="{% url 'crt-stat' %}">Créer un nouveau status</a>
     </tbody>
 </table>
 {% endblock %}

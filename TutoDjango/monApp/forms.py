@@ -25,3 +25,9 @@ class RayonForm(forms.ModelForm):
         model = Rayon
         fields = '__all__'
         exclude = ()
+
+class StatutForm(forms.ModelForm):
+    class Meta:
+        model=Statut
+        fields='__all__'
+        excude=()

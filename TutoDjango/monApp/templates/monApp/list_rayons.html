@@ -13,8 +13,8 @@
         <tr>
             <td><a href="{% url 'dtl_ry' ry.idRayon %}">{{ ry.idRayon }}</a></td>
             <td>{{ ry.nomRayon }} </td>
-            <td><a href="{% url 'ry-chng' ry.refProd %}">Modifier</a></td>
-            <td><a href="{% url 'dlt-ry' ry.refProd %}">Supprimer</a></td>
+            <td><a href="{% url 'ry-chng' ry.idRayon %}">Modifier</a></td>
+            <td><a href="{% url 'dlt-ry' ry.idRayon %}">Supprimer</a></td>
         </tr>
         {% endfor %}
         <a href="{% url 'crt-ry' %}">Créer un nouveau rayon</a>

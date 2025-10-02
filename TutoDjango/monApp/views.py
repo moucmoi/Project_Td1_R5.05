@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.forms import BaseModelForm
 from django.urls import reverse_lazy
+from django.db.models import Count
 
 
 class HomeView(TemplateView):
@@ -152,9 +153,14 @@ class CategorieListView(ListView):
     template_name = "monApp/list_categories.html"
     context_object_name = "cats"
 
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Categorie.objects.annotate(nb_produits=Count('produits'))
+    
+    
     def get_context_data(self, **kwargs):
         context = super(CategorieListView, self).get_context_data(**kwargs)
-        context['titremenu'] = "Liste des catégories"
+        context['titremenu'] = "Liste de mes catégories"
         return context
 
 class CategorieDetailView(DetailView):
@@ -162,9 +168,14 @@ class CategorieDetailView(DetailView):
     template_name = "monApp/detail_categories.html"
     context_object_name = "cat"
 
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Categorie.objects.annotate(nb_produits=Count('produits'))
+
     def get_context_data(self, **kwargs):
         context = super(CategorieDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail de la catégorie"
+        context['prdts'] = self.object.produits.all()
         return context
     
 class CategorieUpdateView(UpdateView):
@@ -199,6 +210,10 @@ class StatusListView(ListView):
     template_name = "monApp/list_statuts.html"
     context_object_name = "stats"
 
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Statut.objects.annotate(nb_produits=Count('Statut'))
+    
     def get_context_data(self, **kwargs):
         context = super(StatusListView, self).get_context_data(**kwargs)
         context['titremenu'] = "Liste des status"
@@ -208,6 +223,10 @@ class StatusDetailView(DetailView):
     model = Statut
     template_name = "monApp/detail_statut.html"
     context_object_name = "stat"
+
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Categorie.objects.annotate(nb_produits=Count('Statut'))
 
     def get_context_data(self, **kwargs):
         context = super(StatusDetailView, self).get_context_data(**kwargs)

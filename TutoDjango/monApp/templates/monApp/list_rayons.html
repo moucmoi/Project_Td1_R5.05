@@ -6,18 +6,22 @@
 <table class="table">
     <thead>
         <th>Id</th>
-        <th>Nom Rayon</th>
+        <th>Nom rayon</th>
+        <th>Valeur marchande du rayon</th>
     </thead>
     <tbody>
-        {% for ry in rys %}
+        {% for data in ryns_dt %}
         <tr>
-            <td><a href="{% url 'dtl_ry' ry.idRayon %}">{{ ry.idRayon }}</a></td>
-            <td>{{ ry.nomRayon }} </td>
-            <td><a href="{% url 'ry-chng' ry.idRayon %}">Modifier</a></td>
-            <td><a href="{% url 'dlt-ry' ry.idRayon %}">Supprimer</a></td>
+            <td><a href="{% url 'dtl_ry' data.rayon.idRayon %}">{{ data.rayon.idRayon }}</a></td>
+            <td>{{ data.rayon.nomRayon }} </td>
+            <td>{{ data.total_stock }} €</td>
+            <td>
+                <a href="{% url 'dtl_ry' data.rayon.idRayon %}" class="btn btn-primary mt-2">Détails</a>
+                <a href="{% url 'ry-chng' data.rayon.idRayon %}" class="btn btn-warning mt-2">Modifier</a>
+                <a href="{% url 'dtl_ry' data.rayon.idRayon %}" class="btn btn-danger mt-2">Supprimer</a>
+            </td>
         </tr>
         {% endfor %}
-        <a href="{% url 'crt-ry' %}">Créer un nouveau rayon</a>
     </tbody>
 </table>
 {% endblock %}

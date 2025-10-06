@@ -6,19 +6,19 @@
 <table class="table">
     <thead>
         <th>Id</th>
-        <th>Nom Statut</th>
+        <th>Nom statut</th>
         <th>Nombre de Produits</th>
     </thead>
     <tbody>
         {% for stat in stats %}
         <tr>
-            <td><a href="{% url 'dtl_stat' stat.idStatus %}">{{ stat.idStatus }}</a></td>
-            <td>{{ stat.nomstat }} </td>
+            <td><a href="{% url 'dtl_stat' stat.idStatut %}">{{ stat.idStatut }}</a></td>
+            <td>{{ stat.libelleStatut }} </td>
             <td>{{ stat.nb_produits }} </td>
             <td>
-                <a href="{% url 'dtl_stat' stat.idStatus %}" class="btn btn-primary mt-2">Détails</a>
-                <a href="{% url 'stat-chng' stat.idStatus %}" class="btn btn-warning mt-2">Modifier</a>
-                <a href="{% url 'dlt-stat' stat.idStatus %}" class="btn btn-danger mt-2">Supprimer</a>
+                <a href="{% url 'dtl_stat' stat.idStatut %}" class="btn btn-primary mt-2">Détails</a>
+                <a href="{% url 'stat-chng' stat.idStatut %}" class="btn btn-warning mt-2">Modifier</a>
+                <a href="{% url 'dlt-stat' stat.idStatut %}" class="btn btn-danger mt-2">Supprimer</a>
             </td>
         </tr>
         {% endfor %}

@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-*x4xx^45bl4_5c9)6o*f%xh@3!&===$joa(khi%k)ke7-l(6#_
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = '/monApp/login/'
 
 
 # Application definition

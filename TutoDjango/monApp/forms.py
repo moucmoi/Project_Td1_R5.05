@@ -31,3 +31,10 @@ class StatutForm(forms.ModelForm):
         model=Statut
         fields='__all__'
         excude=()
+
+class ContenirForm(forms.ModelForm):
+
+    class Meta:
+        model=Contenir
+        fields=['idP', 'qte']
+        exclude=()

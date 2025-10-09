@@ -22,6 +22,7 @@
         <div class="car-footer text-center">
             <a href="{% url 'ry-chng' ry.idRayon %}" class="btn btn-warning mt-2">Modifier</a>
             <a href="{% url 'dtl_ry' ry.idRayon %}" class="btn btn-danger mt-2">Supprimer</a>
+            <a href="{% url 'cntnr-crt' ry.idRayon %}" class="btn btn-success mt-2">Ajouter un produit</a>
             <a href="{% url 'lst_rys'%}" class="btn btn-info mt-2">Retour</a>
         </div>
     </div>
@@ -47,6 +48,7 @@
                                 <li>Total : {{ data.total_produit}} €</li>
                             </ul>
                 <a href="{% url 'dtl_prdt' data.produit.refProd %}" class="btn btn-primary mt-2">Détails</a>
+                
                         </div>
                     </div>
                 </div>

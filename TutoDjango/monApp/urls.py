@@ -42,5 +42,7 @@ urlpatterns = [
 
     path('email-sent/',views.mailSend,name="email-sent"),
 
+    path('rayon/<pk>/cntnr', views.ContenirCreateView.as_view(), name='cntnr-crt'),
+
     
 ]
